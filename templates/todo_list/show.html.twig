@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TodoList{% endblock %}
+
+{% block body %}
+    <h1>{{ todo_list.name }}</h1>
+
+    <div class="row new-item-container">
+        <div class="col-md-12">
+            <a href="{{ path('item_new', {id: todo_list.id}) }}" class="btn btn-success float-right">Add new element</a>
+        </div>
+    </div>
+
+    <div class="row share-container">
+        <div class="col-md-12">
+            {% if todo_list.token is not empty %}
+                <form action="{{ path('todo_list_unshare', {id: todo_list.id}) }}" method="post">
+                    <button type="submit" class="btn btn-primary">Unshare</button>
+                </form>
+
+                {% set shareUrl = url('todo_list_show_shared', {token: todo_list.token}) %}
+                <p>Share link: <a href="{{ shareUrl }}">{{ shareUrl }}</a></p>
+            {% else %}
+                <form action="{{ path('todo_list_share', {id: todo_list.id}) }}" method="post">
+                    <button type="submit" class="btn btn-primary">Share</button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+
+    <div id="items-list" class="items" data-list-id="{{ todo_list.id }}">
+        {% for item in items %}
+            <div class="card ui-state-default" data-id="{{ item.item.id }}">
+                <h5 class="card-title">{{ item.title|raw }}</h5>
+                {% if item.description is not empty %}
+                    <div class="card-body">
+                        <p>{{ item.description|raw }}</p>
+                    </div>
+                {% endif %}
+                <div class="card-footer text-muted">
+                    <a href="{{ path('item_edit', {id: item.item.id}) }}" class="btn btn-success">Edit</a>
+                    <form action="{{ path('item_toggle_complete', {id: item.item.id}) }}" method="post">
+                        <button type="submit" class="btn">
+                            Mark as
+                            {% if item.item.isComplete %}uncompleted{% else %}completed{% endif %}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div id="list-options">
+        <a href="{{ path('todo_list_index') }}" class="btn btn-primary">Back to list</a>
+        <a href="{{ path('todo_list_edit', {'id': todo_list.id}) }}" class="btn btn-success">Edit</a>
+        {{ include('todo_list/_delete_form.html.twig') }}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/sortable.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New list{% endblock %}
+
+{% block body %}
+    <h1>Create new list</h1>
+
+    {{ include('todo_list/_form.html.twig') }}
+
+    <div id="list-options">
+        <a href="{{ path('todo_list_index') }}" class="btn btn-primary">Back to list</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,5 @@
+category:
+    movie: 'Movie'
+    book: 'Book'
+    shopping_item: 'Shopping item'
+    other: 'Other'

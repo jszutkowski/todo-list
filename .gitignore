@@ -1,0 +1,7 @@
+/.idea/*
+/.docker/data/*
+
+/.env
+/public/bundles/
+/var/
+/vendor/

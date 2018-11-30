@@ -1,0 +1,44 @@
+.new-item-container {
+    margin-bottom: 20px;
+}
+
+#items-list > .card {
+    margin-bottom: 10px;
+}
+
+#items-list > .card .card-title {
+    padding: 20px
+}
+
+#items-list > .card .card-footer > * {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+#list-options {
+    margin-top: 40px
+}
+
+#list-options > * {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.share-container {
+    position: relative;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.share-container > * {
+    float: right;
+    clear: both;
+}
+
+.share-container p {
+    word-break: break-all;
+}
+
+.share-container div > * {
+    float: right;
+}
