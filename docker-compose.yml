@@ -14,7 +14,7 @@ services:
         working_dir: "/app"
         volumes:
             - ".:/app"
-        command: "php -S 0.0.0.0:${PORT_PHP} -t public"
+        command: "php -S 0.0.0.0:${PORT_PHP} -t public -c .docker/php/php.ini"
         ports:
             - "${PORT_PHP}:${PORT_PHP}"
         environment:
